@@ -1,0 +1,15 @@
+component_or_example,sha256
+"P5.exe, positive-coordinate binding",d829cc485d1b6c454af3b1274a9be2ceb37b08ce946bf39b7bbfccde380962c1
+"P5-resume.exe, positive-coordinate binding",f70cca81bb143f39f56f6935d5d207c8c527ac2ecaa6a26aaaa24a66c816c35e
+native GPX2,61e4ba2c4123f83bdf4d4cd06f0433aa9c9aa9f63ce249a6a1cb9c4572ee336e
+LKH 3.0.14 Ascent64-compatible executable,bc7863ed0cb0f3417d7dc02a756609dbd6d5f3baa0b9d8983d9857fb755907f3
+M/K shared-prefix driver,12b90fc15b3eb642f4e86b81c6692dced340d684291ef4658ebb44da16019a3d
+M/K arm driver,e48a0a2ace5b8107f5a3b7592bcb6e4c0125e6a4568b20be0d9b692983b62520
+Shared execution core,e6221c4f199d067a904d538f03fe297eabcde646bf24eaa069d9a5030c66e31b
+"C, U10000-02 / 761 run.par",e39ab2319f0fb1e21da0978ab1abc3c99bc307fa550e0f4aa39b2d2efa5393cc
+"Third parent, U10000-02 / 981 run.par",734b040f0c97f346fb20a9c4a48adcdafad4e13075f32177f8a75a18b52af786
+"M continuation, U10000-02 / 981 resume.par",4f9e21fe21aa220d4fc9bc49aa3c85134149a96e55a37c8e93824dbc2483dfc8
+"K continuation, U10000-02 / 981 resume.par",ac9915f812bf7d287c621b9e778ec664050c8cfdf43449e92720338249a337f5
+"LKH-GPX2, C10000-01 / 541 parameters.par",7a7438a669972a507f457beee784c3dd851df62131017231a4b9e8876d870848
+"LKH-POP, C10000-01 / 541 parameters.par",2346fb5d26dd1ffba11871caa7a68c631308679bfe2c7e9333bc121e5cd3cc4c
+GCC executable (Ascent64 build receipt),e47ff11a48f1dd4546a0e5ae14913ea582f0c77a4c9a48ceb35ad8d2880fe27d
