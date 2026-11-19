@@ -14,3 +14,5 @@ The following checks ran on the public staging directory before packaging. All 1
 | R4 M/C | 11 / 17 / 8 | +0.003732069% |
 
 The independent `verify_tour.py` was smoke-tested with one retained V22 coordinate file (RUE-1000-01) and its authorized original C tour for seed 541. It validated 1,000 distinct cities and obtained the registered circuit length of 23,345,321. This test used private access to the saved tour. The historical 464-route result was recorded separately with the original verifier. The public package does not contain those city orders. No solver ran during packaging.
+
+The current public figure script was run offline using the two included CSV tables. Figure 1 (2,130 × 1,740 pixels) and S1 (2,010 × 1,470 pixels) matched the corresponding published PNG images pixel for pixel. Both PDFs matched the archived vector figures when rendered at 144 dpi. The S1 table retains all 20 observations at 19 distinct plotted positions, ordered as in the manuscript so overlapping markers are drawn in the same order. A separate test with the locally authorized seed-level package also passed the historical statistical replay and generated its original map plot.
