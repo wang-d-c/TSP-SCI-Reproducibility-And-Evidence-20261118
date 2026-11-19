@@ -1,45 +1,42 @@
-# Reproduce results from public tables or authorized source files
+# Reproduce results from public tables or authorized city orders
 
-## 1. Public results and figures
+## Public numerical replay and figures
 
-Open a shell at the top level of the extracted ZIP or a fresh checkout with `.gitattributes`. Those attributes preserve the input bytes during Git checkout, including Windows checkouts with `core.autocrlf=true`. The [file manifest](../FILE_SHA256.csv), [map-level data](../data/) and [published plotting coordinates](../data/Figure_S1_plot_coordinates.csv) are sufficient for these offline commands.
+Start at the root of the extracted ZIP or a fresh Git checkout. The file manifest covers exact bytes, including line endings. The [run-level numerical tables and dictionary](../data/historical_seeds/) contain 300 V22 and 180 R4 records. The [map-level effects and plotting coordinates](../data/) identify the numerical inputs for the main results, Figure 1 and Supplementary Figure S1.
 
 ```sh
 python -B -X utf8 verify_package.py
 python -B -X utf8 check_tables.py
+python -B -X utf8 verify_seed_export.py
+python -B -X utf8 replay_historical_inference.py
 python -B -X utf8 rebuild_figures.py reproduced-figures
+python -B -X utf8 plot_historical_seed_pairs.py individual-pair-figures
 ```
 
-The file and statistics checkers use the Python standard library. If they report changed line endings, re-extract this revision's ZIP or make a fresh checkout containing `.gitattributes`. Hash checks use the original bytes. The figure script requires Matplotlib (tested with 3.10.6); give it a new output directory. It writes PNG and vector PDF versions of `Figure_1_R4_K_vs_M` and `Figure_S1_start_vs_final`. Figure 1 uses the 12 map-level K/M means at their stored precision. S1 displays 20 pairs with shorter K starts. One plotted coordinate represents two observations. See the [reported checks](../CHECKS.md).
+Python 3.13.9 was used for the registered inference replay. It uses NumPy 2.3.5 for the V22 PCG64 stream at seed `20261112` and the 20,000 stratified resamples, preserving the map-level sign-flip tests and original two-comparison Holm family. R4 uses its registered map-level procedure and five-comparison family. Figures were rebuilt with Matplotlib 3.10.6. Pass new output directories to the figure commands. [Result mapping and variable definitions](../data/historical_seeds/README.md).
 
-## 2. Seed-level statistics with authorized local inputs
+## Coordinate files
 
-Ask the authors for the hash-matching V22 and R4 analysis package, including the registered statistics and plotting scripts and the tables listed under `stats` in [replay_inputs.csv](replay_inputs.csv). Provision depends on applicable rights. Its root must contain `data/` and `scripts/`. Once a copy is available, the following command verifies the input hashes, stages the required files in a new directory outside the input, and runs the historical seed-level analysis. It produces V22 and R4 statistical results and the earlier design of the map plot. The original analysis was tested with Python 3.13.9, NumPy 2.3.5 and Matplotlib 3.10.6. Replace example paths with your local paths.
+Fourteen exact Stirling maps are included. The [member manifest](stirling_14.csv) gives the original archive URLs, member names and hashes. Retain their [source attribution and licence notices](../instances/ATTRIBUTION.md). To match independently obtained source archives, place `RUE.zip`, `NETGEN.zip` and `MORPH.zip` from the [original deposit](https://datastorre.stir.ac.uk/handle/11667/127) in a local folder and run `python -B -X utf8 replay/prepare_stirling.py <download-directory>`.
 
-```powershell
-python -B -X utf8 replay/replay_authorized_inputs.py stats "C:\authorized\02_复现资料" "C:\reanalysis\new-statistics"
-```
+Run `python -B -X utf8 rebuild_generated_maps.py generated-local` for the other 18 historical maps. The generator checks each SHA256 against the [frozen manifest](../generated_map_manifest.csv).
 
-The two hash columns in the input manifest record recognized file encodings of the preserved analysis inputs. The manifest identifies files independently of any online source. Individual seed-level method records, tour files and the solver toolchain have separate access conditions.
+## Tour verification with authorized city orders
 
-## 3. Saved tour verification
-
-With one legally obtained city order and the corresponding integer-coordinate EUC_2D instance, use the public [standalone verifier](../verify_tour.py) from the repository root:
+Obtain the saved city order from the authors or another rights holder before making an independent check. This release provides lengths and map hashes. It omits individual city orders. With the matching input and a saved TSPLIB TOUR file, run the following.
 
 ```sh
-python -B verify_tour.py path/to/instance.tsp path/to/route.tour --expect LENGTH
+python -B -X utf8 verify_tour.py path/to/instance.tsp path/to/tour.tour --expect LENGTH
 ```
 
-For the registered 464-tour check, request the authorized package containing the 464 city orders, 18 project-generated instances, the two files listed under `routes` in the input manifest and the registered layout. A subset of 254 tours has the required coordinates in that package. This repository includes the other 14 maps under [instances/](../instances/) with their exact original bytes. Use that directory for the remaining 210 tours:
+The verifier checks a complete city permutation and its closed integer EUC_2D circuit. The authors' local review materials permit all 300 V22 and 164 R4 valid saved routes to be checked when the routes are accessible. The public commands alone compute no city order and verify no proof of global optimality.
+
+If the authors provide the original archived access-controlled replay layout, the earlier raw-input helper is available. It checks the files listed in [replay_inputs.csv](replay_inputs.csv) and copies work inputs to a new scratch area before replay. The 14 supplementary coordinate files can be drawn from this release. The historical `stats` mode checks the earlier analysis package; the public inference command above works from the released numerical CSVs.
 
 ```powershell
 python -B -X utf8 replay/replay_authorized_inputs.py routes "C:\authorized\02_复现资料" "C:\reanalysis\new-full" --external-maps "instances"
 ```
 
-For a deliberately partial check, replace the `--external-maps` option and its argument with `--partial`. The registered verifier checks hashes, coverage, closure and EUC_2D length. Historically all 300 V22 and 164 R4 saved valid tours passed. These instructions describe how an authorized recipient can repeat the check.
+## Timed solving and engineering scope
 
-The included RUE, NETGEN and MORPH instances are attributed in [the instance licence notice](../instances/ATTRIBUTION.md). To check them against independently acquired original archives, obtain RUE.zip, NETGEN.zip and MORPH.zip from the [University of Stirling dataset](https://datastorre.stir.ac.uk/handle/11667/127) and run `python -B -X utf8 replay/prepare_stirling.py "C:\downloads\Stirling"`. The [instance manifest](stirling_14.csv) identifies the archive URLs, member names and exact checksums.
-
-## 4. New timed searches
-
-An end-to-end C/M/K search requires the frozen project programs and parameters, upstream and local rights, shared-prefix charging, and the Windows resource controls. The latest independent test started P5 during parent generation and stopped at the registered resource guard. It delivered no M or K continuation endpoint. The public replay commands perform statistics, plotting and tour verification only.
+Full timed reruns need the exact solver builds and parameters, authorization, Windows runtime, parent-pool accounting, and memory, paging and stop controls. The [toolchain guide](TOOLCHAIN.md) records the access and build boundary. A 2026-11-18 replay attempt stopped at the resource guard. Both shared-pool orders passed on a separate 101-city case on 2026-11-19. POPMUSIC and four candidate-edge cases passed checks of the implementation and route delivery. The largest EAX engineering case was excluded because complete proof of stopping before the deadline was unavailable. The 1,600 later proposed formal runs remain unstarted. [Engineering status and evidence](../实验与稿件交付状态.md).

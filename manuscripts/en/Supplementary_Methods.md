@@ -1,5 +1,7 @@
 # Supplementary methods and recorded costs
 
+Supplement to the corresponding-author review draft · 2026-11-19 · Unsubmitted
+
 Tables S1–S3 describe the frozen R4 methods and timing records. Table S4 summarizes attainment of published reference lengths. Table S5 records the registered test results, including the incomplete EAX contrast. V22 used separate instances, hardware and GPX2 software.
 
 ## Supplementary Table S1. Methods and execution settings
@@ -92,7 +94,7 @@ The coordinates, city IDs, dimension, distance type and input-file SHA-256 match
 
 In V22, eight different public maps supplied 40 valid routes per arm. C attained the corresponding optimum in 37 runs, M in 36 and K in 39. These results are reported separately from R4. The 18 project-generated maps across the two batches have no matched external reference in this analysis.
 
-The public companion tables list all 14 reference lengths and summarize 210 valid historical route comparisons by instance and method. The individual comparison records require authorized source data. For a valid tour of length L and published optimum O, the percentage gap is 100 × (L − O) / O. A zero gap says nothing about when the optimum was first found.
+The public companion tables list all 14 reference lengths and summarize 210 valid historical route comparisons by instance and method. The corresponding individual numeric outcomes appear in the public seed-level tables, with saved city orders separately available for authorized review. For a valid tour of length L and published optimum O, the percentage gap is 100 × (L − O) / O. A zero gap says nothing about when the optimum was first found.
 
 ## Supplementary Table S5. Registered R4 map-level sign-flip tests
 
@@ -106,4 +108,10 @@ The public companion tables list all 14 reference lengths and summarize 210 vali
 
 ## Supplementary execution record
 
-Execution record. The original R4 EAX version delivered 18 valid routes, had one execution exception and left 17 slots deferred. The supplementary version delivered 18, failed on one and did not start the remaining 17. The follow-up eight-map confirmation recorded three valid C/M/K results in its first group, one author-LKH wrapper error before native search and 60 unstarted slots. The 30-second development prototype for GPX2-boundary-guided candidate ordering produced ten valid tasks and three complete three-arm comparisons before a monitoring error. A separate solver replay attempt stopped at the shared parent-building stage under the registered paging guard. These records characterize coverage and failure modes. They are retained outside the main performance comparison.
+Historical execution record. The original R4 EAX version delivered 18 valid routes, had one execution exception and left 17 slots deferred. The supplementary EAX version delivered 18, failed on one and did not start 17. The eight-map confirmation recorded three valid C/M/K results, one author-LKH wrapper error before native search and 60 unstarted slots. The 30-second candidate-ordering prototype recorded ten valid tasks and three complete three-arm comparisons before a monitoring error. A separate solver replay attempt stopped during shared parent building under the registered paging guard. These results remain outside the main performance comparison.
+
+Engineering qualifications on 2026-11-19. One 90-second author LKH POPMUSIC run delivered a certified tour of length 28,369,732 on the exposed RUE-1500 case. This establishes that the configured code and delivery path work for that case. Four 30-second candidate-edge cells used the same historical 10,000-city pool. Their first search tours matched their assigned starts. With automatic insertion enabled, each candidate graph included all 10,000 start edges. Without it, the graphs included 9,956 and 9,957 respectively for the two assigned starts. All four delivered legal tours. This isolates the observed input and candidate-set behavior for these engineering runs. No completed performance comparison establishes a POPMUSIC or candidate-policy benefit.
+
+Shared-parent qualification on 2026-11-19. The first K-to-M attempt stopped before parent generation with an engineering plan that omitted the dimension field. Its failed receipt is retained. A distinct repair matched the 101-city fixture header, coordinate count and frozen hash. The repaired K-to-M and M-to-K runs each produced one shared three-parent pool and two independently verified endpoints. Each arm was charged the full common prefix, 42.623 seconds for K-to-M and 43.161 seconds for M-to-K. The qualification uses the frozen algorithm components and establishes the two execution orders for this fixture.
+
+Maximum-size EAX qualification on 2026-11-19. The 19,402-city engineering run, using seed 6503, saved a candidate of independently verified EUC_2D length 61,779. The stop was requested at 85.806 seconds and an exit was observed at 86.064 seconds. The record lacks complete evidence of a stop by 86 seconds, so the route is unscored. The Job was fully cleaned up. The planned 800 same-budget and 800 mechanism slots have started and completed zero formal runs. The public engineering summary identifies the cases, version bindings and statuses separately from historical outcomes.

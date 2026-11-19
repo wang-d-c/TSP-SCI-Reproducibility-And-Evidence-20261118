@@ -1,0 +1,75 @@
+{
+  "source": "V23 independent audit history, statistics/results_02/audit_summary.json",
+  "source_sha256": "460c3449093cf6dfc21e310d23b5654bcdee91949e2bbc37121abe1ff0e47d6f",
+  "audit_script_sha256": "2f8a3e31ed4617e8918f66ac46624fbaa4575b5ae360677c1ab9c7cc42fe27a0",
+  "bootstrap": {
+    "generator": "NumPy PCG64",
+    "seed": 20261112,
+    "replicates": 20000,
+    "strata_order": [
+      "public",
+      "uniform",
+      "clustered",
+      "mixed"
+    ],
+    "stratum_sizes": [
+      8,
+      4,
+      4,
+      4
+    ],
+    "map_order": "released V22 map table, independently matched to frozen formal100 plan",
+    "quantile": "linear"
+  },
+  "test": "Exact two-sided map-level sign flips using exact rational effects; Holm family of K_vs_C and K_vs_M.",
+  "comparisons": {
+    "K_vs_C": {
+      "shorter_tied_longer": [
+        36,
+        38,
+        26
+      ],
+      "map_equal_mean_percent": 0.003476334199286889,
+      "intervals": {
+        "95": [
+          0.001251561484655246,
+          0.005831295655110552
+        ],
+        "97.5": [
+          0.0009898228197872,
+          0.006169581220271047
+        ]
+      },
+      "exact_sign_flip_p": 0.01708984375,
+      "holm_p_two_primary": 0.01708984375
+    },
+    "K_vs_M": {
+      "shorter_tied_longer": [
+        44,
+        41,
+        15
+      ],
+      "map_equal_mean_percent": 0.002930011486629059,
+      "intervals": {
+        "95": [
+          0.0016490989236365157,
+          0.004184120389407473
+        ],
+        "97.5": [
+          0.001460115686351895,
+          0.004370532542742281
+        ]
+      },
+      "exact_sign_flip_p": 0.00634765625,
+      "holm_p_two_primary": 0.0126953125
+    },
+    "M_vs_C": {
+      "shorter_tied_longer": [
+        27,
+        37,
+        36
+      ],
+      "map_equal_mean_percent": 0.0005456977070257869
+    }
+  }
+}
