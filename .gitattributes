@@ -1,0 +1,2 @@
+# FILE_SHA256.csv records exact bytes. Preserve original line endings on every checkout.
+* -text

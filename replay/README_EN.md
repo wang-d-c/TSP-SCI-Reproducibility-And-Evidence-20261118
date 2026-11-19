@@ -2,14 +2,15 @@
 
 ## 1. Public results and figures
 
-Open a shell at the top level of the extracted public package or repository. The [map-level data](../data/) and [published plotting coordinates](../data/Figure_S1_plot_coordinates.csv) are sufficient for both commands. They work offline.
+Open a shell at the top level of the extracted ZIP or a fresh checkout with `.gitattributes`. Those attributes preserve the input bytes during Git checkout, including Windows checkouts with `core.autocrlf=true`. The [file manifest](../FILE_SHA256.csv), [map-level data](../data/) and [published plotting coordinates](../data/Figure_S1_plot_coordinates.csv) are sufficient for these offline commands.
 
 ```sh
+python -B -X utf8 verify_package.py
 python -B -X utf8 check_tables.py
 python -B -X utf8 rebuild_figures.py reproduced-figures
 ```
 
-The statistics checker uses the Python standard library. The figure script requires Matplotlib (tested with 3.10.6). Give it a new output directory. It writes two PNGs and two vector PDFs. Figure 1 uses the 12 map-level K/M means at their stored precision. S1 displays 20 pairs with shorter K starts. One plotted coordinate represents two observations. See the [reported checks](../CHECKS.md).
+The file and statistics checkers use the Python standard library. If they report changed line endings, re-extract this revision's ZIP or make a fresh checkout containing `.gitattributes`. Hash checks use the original bytes. The figure script requires Matplotlib (tested with 3.10.6); give it a new output directory. It writes PNG and vector PDF versions of `Figure_1_R4_K_vs_M` and `Figure_S1_start_vs_final`. Figure 1 uses the 12 map-level K/M means at their stored precision. S1 displays 20 pairs with shorter K starts. One plotted coordinate represents two observations. See the [reported checks](../CHECKS.md).
 
 ## 2. Seed-level statistics with authorized local inputs
 

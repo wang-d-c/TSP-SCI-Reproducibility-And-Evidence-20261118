@@ -1,6 +1,5 @@
 """Check published map aggregates and public input identities, without external packages."""
 import csv
-import hashlib
 import math
 import re
 import random
@@ -9,6 +8,7 @@ from decimal import Decimal
 from itertools import product
 from pathlib import Path
 from statistics import fmean
+from verify_package import RECOVERY, verify_file
 
 ROOT = Path(__file__).resolve().parent
 
@@ -44,8 +44,10 @@ def main():
     maps = read("replay/stirling_14.csv")
     require(len(maps) == len({m["map_id"] for m in maps}) == 14, "instance manifest")
     for m in maps:
-        raw = (ROOT / "instances" / m["batch"] / (m["map_id"] + ".tsp")).read_bytes()
-        require(hashlib.sha256(raw).hexdigest() == m["member_sha256"], m["map_id"])
+        path = f'instances/{m["batch"]}/{m["map_id"]}.tsp'
+        failure = verify_file(path, m["member_sha256"])
+        if failure:
+            raise SystemExit(f"{failure}\n{RECOVERY}")
     print("14 original Stirling members matched their registered hashes.")
 
     by_map = read("data/R4_map_comparisons.csv")

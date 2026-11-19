@@ -19,7 +19,9 @@ Tables S1–S3 describe the frozen R4 methods and timing records. Table S4 compa
 | Outer budget | Windows, one search task at a time, registered CPU0 affinity; 90-second total ceiling, search stopping/closing by 86 seconds, certified delivery strictly before 88 seconds and cleanup within 90 seconds. Affinity does not establish exclusive access to a physical core. |
 | Inner time-limit fields | The inspected native parameter files set `TIME_LIMIT=86400`, and author LKH also `TOTAL_TIME_LIMIT=86400`; these are subordinate to the outer deadline and do not provide an additional budget. |
 
-P5 values above were checked against the existing C `V244_V242-U10000-02_s761_C_project_a01/w/C/solver/run.par`, third-parent `V242-U10000-02_s981/task/prefix/pool_3/run.par`, and recorded M/K resume examples in `method_config_examples.json`; author LKH values were checked against the two actual C10000-01/541 `parameters.par` files. These are documented examples; individual run files and receipts remain the authority for each task.
+P5-resume starts a fresh process, reads the selected incumbent through INITIAL_TOUR_FILE and rebuilds its POPMUSIC candidate set. The continuation build enforces the selected cycle at the first search trial and emits first-cycle and improvement snapshots. These operations are charged within the budget. The frozen M/K continuation files set an initial-tour fraction of one; the effective POPMUSIC initial-tour flag is off. Table S2 identifies the checked binaries and runner components.
+
+Synthetic geometries. U samples integer points uniformly in the 0–9999 square. C uses 32 clusters laid out on an 8 × 4 grid, with integer offsets within 300 units of each cluster center. R distributes 2,000 cities in each of four boundary bands and 2,000 in a central region. The generators resample duplicate coordinates deterministically. V22 and R4 use separate registered seeds.
 
 ## Supplementary Table S2. Selected R4 version hashes
 
@@ -56,19 +58,21 @@ Each field has 36 observations. Values are arithmetic means in seconds. Availabl
 
 | Recorded field | M | K | Interpretation |
 |---|---:|---:|---|
-| `prefix_paid_s` | 53.086230 | 53.087202 | Each arm is charged for the shared prefix; these fields include required preparation and are not pure solver CPU time. |
-| `pair_wall_s` | Not applicable | 0.328780 | K's recorded three-pair GPX2 wall interval; range 0.218216–0.507295 seconds. |
-| `resume_available_budget_s` | 31.152158 | 30.880452 | Recorded available continuation budgets, not CPU time, actual exit or discovery times. |
-| `commit_paid_s` | 85.888942 | 85.889414 | Recorded paid certification/commit time, not the instant when the best solution was first discovered or a process exited. |
+| `prefix_paid_s` | 53.09 | 53.09 | Each arm is charged for the shared prefix; these fields include required preparation and are not pure solver CPU time. |
+| `pair_wall_s` | Not applicable | 0.329 | K's recorded three-pair GPX2 wall interval; range 0.218–0.507 seconds. |
+| `resume_available_budget_s` | 31.15 | 30.88 | Recorded available continuation budgets, not CPU time, actual exit or discovery times. |
+| `commit_paid_s` | 85.89 | 85.89 | Recorded paid certification/commit time, not the instant when the best solution was first discovered or a process exited. |
 | Independent selection and validation subcosts | Unknown | Unknown | The records do not provide complete, separately timed costs that may be combined into a full component breakdown. |
 
-The available continuation-time difference includes preparation and validation as well as recombination; it must not be attributed wholly to GPX2 by subtraction. Source: the 36-row `km_mechanism/results/36组起点成本终点.csv`; definitions, hashes, sample parameter-file locations and caveats are documented in the companion Chinese audit. Across 18 small-map pairs, the recorded time for the three GPX2 calls had a median of 0.264 s (quartiles 0.236–0.276 s). Across 18 large-map pairs the median was 0.398 s (0.361–0.411 s). The median paired M minus K continuation allowance was 0.219 s for the small maps and 0.348 s for the large maps. Among the large maps the differences ranged from −0.288 to 0.450 s, so K did not always enter continuation with less time.
+The continuation allowance includes branch preparation in its elapsed charge. Across the small maps, GPX2 time had median 0.264 s (quartiles 0.236–0.276 s). On the large maps the median was 0.398 s (0.361–0.411 s). Median paired M minus K continuation allowance was 0.219 s and 0.348 s, respectively. On C10000-02 with seed 981 the charged prefix was 54.91 s in each arm. The selected-start commit took 2.22 s for M and 1.93 s for K, so the continuation allowances were 28.67 s and 28.96 s. The three GPX2 calls occupied 0.36 s inside K’s recorded work. The timing records do not identify a separate cause for every branch delay. See cost_distributions.csv for the aggregate values.
+
+Post hoc denominator check. On each map, compute 100 × (mean reference length − mean comparison length) / mean reference length using the same paired seeds. This gives exactly zero for C10000-02 in K/M and C10000-01 in K/C. The equally weighted means are −0.00040503% for K/M and +0.00332789% for K/C. The registered estimator, intervals and Holm test remain primary.
 
 ## Supplementary Figure S1. Starting and final tour differences
 
 ![](Figure_S1_start_vs_final.png)
 
-**Supplementary Figure S1.** Starting- and final-tour reductions of K versus M for the 20 R4 map–seed pairs in which K selected a strictly shorter starting tour. Positive final reductions favor K; one plotted position represents two pairs. The remaining 16 pairs had identical undirected starting cycles and tied final lengths and are omitted from this plot. The comparison is post hoc and does not identify the cause of final differences. Source: `05_图表与分析/Figure_2_36_pairs.csv`.
+Supplementary Figure S1. Starting and final K/M reductions in the 20 R4 pairs with strictly shorter K starts. The diagonal marks a final advantage equal to the starting advantage. One position represents two pairs. The 16 same-cycle starts tied at the end and are omitted. This is a post hoc descriptive subset. The input is Figure_S1_plot_coordinates.csv.
 
 ## Supplementary Table S4. Endpoints attaining the published optimum on the six public R4 maps
 
@@ -89,3 +93,7 @@ The coordinates, city IDs, dimension, distance type and input-file SHA-256 match
 In V22, eight different public maps supplied 40 valid routes per arm. C attained the corresponding optimum in 37 runs, M in 36 and K in 39. These results are reported separately from R4. The 18 project-generated maps across the two batches have no matched external reference in this analysis.
 
 Companion data record all 14 reference values and 210 valid historical route comparisons. For a valid tour of length L and published optimum O, the percentage gap is 100 × (L − O) / O. A zero gap says nothing about when the optimum was first found.
+
+## Supplementary execution record
+
+Execution record. The original R4 EAX version delivered 18 valid routes, had one execution exception and left 17 slots deferred. The supplementary version delivered 18, failed on one and did not start the remaining 17. The follow-up eight-map confirmation recorded three valid C/M/K results in its first group, one author-LKH wrapper error before native search and 60 unstarted slots. The 30-second development prototype for GPX2-boundary-guided candidate ordering produced ten valid tasks and three complete three-arm comparisons before a monitoring error. A separate solver replay attempt stopped at the shared parent-building stage under the registered paging guard. These records characterize coverage and failure modes. They are retained outside the main performance comparison.
