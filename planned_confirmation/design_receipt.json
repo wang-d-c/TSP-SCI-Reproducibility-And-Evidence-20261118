@@ -1,0 +1,52 @@
+{
+  "status": "design_inputs_and_schedule_prepared_solver_qualification_pending",
+  "candidate_count": 29,
+  "selected_count": 20,
+  "selected_families": {
+    "vlsi": 14,
+    "dimacs_official_uniform": 3,
+    "dimacs_generator_derived_uniform": 3
+  },
+  "blocked_candidate_count": 9,
+  "all_selected_original_geometry_unchanged": true,
+  "selected_city_range": [
+    5087,
+    19402
+  ],
+  "main": {
+    "slots": 800,
+    "main_seeds": [
+      541,
+      761,
+      981,
+      1201,
+      1421,
+      1641,
+      1861,
+      2081,
+      2301,
+      2521
+    ],
+    "charged_budget_upper_bound_hours": 20
+  },
+  "mechanism": {
+    "slots": 800,
+    "per_map_pool_seed": 541,
+    "continuation_seeds": [
+      104729,
+      104743,
+      104759,
+      104761,
+      104773,
+      104779,
+      104789,
+      104801,
+      104803,
+      104827
+    ],
+    "charged_budget_upper_bound_hours": 6.666666666666667
+  },
+  "formal_slots_started": 0,
+  "formal_slots_completed": 0,
+  "runtime_results": false
+}

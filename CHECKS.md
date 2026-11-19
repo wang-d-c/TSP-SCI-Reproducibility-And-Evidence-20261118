@@ -18,3 +18,5 @@ An offline test on Windows 11 (Git 2.54.0 and Python 3.13.9) ran the complete ma
 The independent `verify_tour.py` was smoke-tested with one retained V22 coordinate file (RUE-1000-01) and its authorized original C tour for seed 541. It validated 1,000 distinct cities and obtained the registered circuit length of 23,345,321. This test used private access to the saved tour. The historical 464-route result was recorded separately with the original verifier. The public package does not contain those city orders. No solver ran during packaging.
 
 The public figure script renders Figure 1 and Supplementary Figure S1 from the included CSV tables. Figure 1 shows the map-level outcomes and seed-pair counts. S1 preserves 20 observations at 19 distinct coordinate pairs and includes the equality line. A separate check with the locally authorized seed-level package passed the historical statistical replay and generated its original map plot.
+
+The historical seed extract independently reproduces the valid-pair counts and equal-map means. All 18 regenerated project maps match the registered byte hashes. The preannounced new slots remain unexecuted.

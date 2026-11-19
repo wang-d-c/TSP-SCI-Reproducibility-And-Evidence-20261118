@@ -41,3 +41,13 @@ Use the [individual-source attribution](instances/ATTRIBUTION.md) for the 14 Sti
 交付包附有 V22 的 20 图和 R4 的 12 图地图级数据、14 张可署名分享的原始地图，以及复算入口。先运行 `python -B -X utf8 verify_package.py` 核对清单，再运行 `python -B -X utf8 check_tables.py` 复核地图级结果。用 `python -B -X utf8 rebuild_figures.py reproduced-figures` 重绘图 1 和补充图 S1。逐种子复算、验证全部历史路线和重跑定时求解各有不同输入，所需材料和授权范围见[复现说明](replay/README_EN.md)。
 
 [中文公开实验报告](实验报告_公开版.md)
+
+## Historical seed replay and planned independent experiments
+
+This checkpoint restores the results and tests that dropped out of the earlier manuscript. The new experiment plan has 800 same-budget slots and 800 equal-continuation mechanism slots. Their records are plans. The EAX check was on a previously exposed input and is outside the formal comparisons. See the [delivery and evidence record](实验与稿件交付状态.md), the [proposed confirmation protocol](planned_confirmation/实验与统计预登记草案.md) and the [EAX engineering receipt](engineering/eax_exposed_case_regression.json).
+
+The numerical [historical seed extract](data/historical_seeds/) contains 300 V22 entries and 180 R4 outcomes. Recompute the paired counts and means with the command below. The second command regenerates the 18 project-generated inputs and checks the exact SHA256 for every map. The third regenerates the [36-pair dot plot](figures/R4_KM_individual_historical_seeds.pdf).
+
+    python -B verify_seed_export.py
+    python -B rebuild_generated_maps.py generated-local
+    python -B plot_historical_seed_pairs.py figures-check

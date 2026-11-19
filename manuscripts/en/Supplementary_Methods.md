@@ -1,6 +1,6 @@
 # Supplementary methods and recorded costs
 
-Tables S1–S3 describe the frozen R4 methods and timing records. Table S4 compares archived endpoint lengths with published values for byte-identical public instances. Cost distributions and optimum attainment are post hoc descriptions. V22 used a different machine, protocol and GPX2 executable and is reported separately. The data-access statement in the main paper distinguishes the public source data from the project materials and third-party software that require further permission.
+Tables S1–S3 describe the frozen R4 methods and timing records. Table S4 summarizes attainment of published reference lengths. Table S5 records the registered test results, including the incomplete EAX contrast. V22 used separate instances, hardware and GPX2 software.
 
 ## Supplementary Table S1. Methods and execution settings
 
@@ -66,7 +66,7 @@ Each field has 36 observations. Values are arithmetic means in seconds. Availabl
 
 The continuation allowance includes branch preparation in its elapsed charge. Across the small maps, GPX2 time had median 0.264 s (quartiles 0.236–0.276 s). On the large maps the median was 0.398 s (0.361–0.411 s). Median paired M minus K continuation allowance was 0.219 s and 0.348 s, respectively. On C10000-02 with seed 981 the charged prefix was 54.91 s in each arm. The selected-start commit took 2.22 s for M and 1.93 s for K, so the continuation allowances were 28.67 s and 28.96 s. The three GPX2 calls occupied 0.36 s inside K’s recorded work. The timing records do not identify a separate cause for every branch delay. See cost_distributions.csv for the aggregate values.
 
-Post hoc denominator check. On each map, compute 100 × (mean reference length − mean comparison length) / mean reference length using the same paired seeds. This gives exactly zero for C10000-02 in K/M and C10000-01 in K/C. The equally weighted means are −0.00040503% for K/M and +0.00332789% for K/C. The registered estimator, intervals and Holm test remain primary.
+Post hoc denominator check. On each map, compute 100 × (mean reference length − mean comparison length) / mean reference length using the same paired seeds. This gives exactly zero for C10000-02 in K/M and C10000-01 in K/C. The equally weighted means are −4.05 ppm for K/M and 33.28 ppm for K/C. The registered estimator, intervals and Holm test remain primary.
 
 ## Supplementary Figure S1. Starting and final tour differences
 
@@ -88,11 +88,21 @@ Each entry counts the runs that attained the published length among the three re
 |RUE-2000|32,633,059|1/3|3/3|3/3|3/3|3/3|
 |All six|—|16/18|18/18|18/18|10/18|14/18|
 
-The coordinates, city IDs, dimension, distance type and input-file SHA-256 matched the benchmark files. Reference lengths come from the authors’ instance-specific .opt files; Kerschke et al. [13, Section 3.3] report using Concorde. The locally certified tour lengths were compared with these published numbers. No exact solve or verification of a Concorde proof certificate was performed here.
+The coordinates, city IDs, dimension, distance type and input-file SHA-256 matched the benchmark files. Reference lengths come from the authors’ instance-specific .opt files; Kerschke et al. [15, Section 3.3] report using Concorde. The locally certified tour lengths were compared with these published numbers. No exact solve or verification of a Concorde proof certificate was performed here.
 
 In V22, eight different public maps supplied 40 valid routes per arm. C attained the corresponding optimum in 37 runs, M in 36 and K in 39. These results are reported separately from R4. The 18 project-generated maps across the two batches have no matched external reference in this analysis.
 
 The public companion tables list all 14 reference lengths and summarize 210 valid historical route comparisons by instance and method. The individual comparison records require authorized source data. For a valid tour of length L and published optimum O, the percentage gap is 100 × (L − O) / O. A zero gap says nothing about when the optimum was first found.
+
+## Supplementary Table S5. Registered R4 map-level sign-flip tests
+
+| Comparison | Nonzero maps | Raw p | Holm p |
+| --- | --- | --- | --- |
+| K/M | 6 | 0.65625 | 1.0 |
+| K/C | 7 | 0.03125 | 0.125 |
+| K/LKH-GPX2 | 7 | 0.015625 | 0.078125 |
+| K/LKH-POP | 6 | 0.03125 | 0.125 |
+| K/EAX | — | Not estimable | Not estimable |
 
 ## Supplementary execution record
 

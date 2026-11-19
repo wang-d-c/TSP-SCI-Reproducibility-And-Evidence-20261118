@@ -2,13 +2,13 @@
 
 ## Abstract
 
-Under a fixed budget, a better intermediate solution may be offset by the cost of obtaining it or by a different subsequent search trajectory. We examine this trade-off for the symmetric Euclidean traveling salesperson problem using three frozen project configurations: continuous LKH-derived search C, continuation from the best of three parents M, and K, which adds three pairwise GPX2 recombinations of the same parents before continuation. The parents are physically shared by M and K but their full generation cost is charged to both; K additionally pays the recombination, selection and validation costs. In the local Windows R4 batch, twelve preselected maps and three seeds yielded 36 map–seed groups with valid C, M and K tours. K versus M was shorter, tied and longer in 9, 21 and 6 pairs; the map-equal mean reduction was −0.000405% with an exploratory map-level 95% interval of [−0.002241%, 0.001096%]. K versus C was 13/16/7, with a mean reduction of 0.003327%. The observed map ties limited the resolution of the registered family-wise tests. On six public maps, both M and K attained the published optimum in all 18 paired runs. Two author LKH configurations produced budget non-deliveries, and a comparable unified edge-assembly-crossover baseline remains incomplete. The separately reported 20-map CPU2 batch had a positive K/M mean. A conditional old-pool diagnostic shows that shorter starts sometimes end worse, without isolating the cause. The study measures the net effect of additional recombination in a same-parent, separately charged comparison and examines whether intermediate gains persist in delivered tours. The evidence is limited to the recorded instances, configurations and budgets.
+Under a fixed budget, a better intermediate solution may be offset by the cost of obtaining it or by a different subsequent search trajectory. We examine this trade-off for the symmetric Euclidean traveling salesperson problem using three frozen project configurations: continuous LKH-derived search C, continuation from the best of three parents M, and K, which adds three pairwise GPX2 recombinations of the same parents before continuation. The parents are physically shared by M and K but their full generation cost is charged to both; K additionally pays the recombination, selection and validation costs. In the local Windows R4 batch, twelve preselected maps and three seeds yielded 36 map–seed groups with valid C, M and K tours. K versus M was shorter, tied and longer in 9, 21 and 6 pairs; the map-equal mean reduction was −4.05 ppm with an exploratory map-level 95% interval of [−22.41 ppm, 10.96 ppm]. K versus C was 13/16/7, with a mean reduction of 33.27 ppm. The observed map ties limited the resolution of the registered family-wise tests. On six public maps, both M and K attained the published optimum in all 18 paired runs. Two author LKH configurations produced budget non-deliveries, and a comparable unified edge-assembly-crossover baseline remains incomplete. The separately reported 20-map CPU2 batch had a positive K/M mean. A conditional old-pool diagnostic shows that shorter starts sometimes end worse, without isolating the cause. The study measures the net effect of additional recombination in a same-parent, separately charged comparison and examines whether intermediate gains persist in delivered tours. The evidence is limited to the recorded instances, configurations and budgets.
 
 **Keywords:** traveling salesperson problem; Lin–Kernighan–Helsgaun; partition crossover; fixed-budget optimization; reproducibility; non-delivery
 
 ## 1. Introduction
 
-When a heuristic must deliver a complete tour by a fixed deadline, time devoted to creating and combining initial tours is time not available for later search. The Lin–Kernighan–Helsgaun (LKH) heuristic [1] and generalized partition crossover (GPX2) [2,3] are established approaches. They can be composed in many ways, but an improvement of the intermediate tour does not itself establish an improvement of the final delivered tour. GPX2 already supports recombination among LKH results, and earlier studies have considered both crossover inside LKH and feedback of improved solutions to search [2–4].
+When a heuristic must deliver a complete tour by a fixed deadline, time devoted to creating and combining initial tours is time not available for later search. The Lin–Kernighan–Helsgaun (LKH) heuristic [1] and generalized partition crossover (GPX2) [2,3] are established approaches. They can be composed in many ways, but an improvement of the intermediate tour does not itself establish an improvement of the final delivered tour. GPX2 already supports recombination among LKH results, and earlier studies have considered both crossover inside LKH and feedback of improved solutions to search [2,3,4].
 
 We compare three project-defined configurations rather than propose a new crossover. C starts independently from the instance, M selects the shortest of three parent tours and continues search, and K performs three additional pairwise GPX2 operations on that same pool before continuation. Necessary generation, selection, recombination, verification and delivery are charged to the appropriate method. We ask whether the additional three-pair preparation improves final tour quality relative to M under the same total budget. Secondary questions concern comparison with continuous C, registered author LKH configurations, and the relationship between starting and final quality.
 
@@ -16,9 +16,9 @@ This study contributes a same-parent comparison in which both M and K are charge
 
 ## 2. Related work
 
-Helsgaun’s LKH implements the Lin–Kernighan heuristic [1]. LKH-2 extended k-opt submoves [14], and the LKH-3 report describes the later solver lineage [15]. GPX2 identifies recombining components and was evaluated within LKH and across separate runs [2,3]. Hains et al. [4] studied crossover on clustered TSP instances. These studies motivate an incremental comparison under a fixed delivery budget.
+Helsgaun’s LKH implements the Lin–Kernighan heuristic [1]. LKH-2 extended k-opt submoves [5], and the LKH-3 report describes the later solver lineage [6]. GPX2 identifies recombining components and was evaluated within LKH and across separate runs [2,3]. Hains et al. [4] studied crossover on clustered TSP instances. These studies motivate an incremental comparison under a fixed delivery budget.
 
-POPMUSIC has been used to construct LKH candidate edges using tour information [5]. Friedrich et al. [6] and Weise et al. [7] study fixed-budget bet-and-run strategies, including allocation of decision time and prediction; choosing among short initial searches is therefore not a new general strategy. Zhang and Looks [8] use backbone information from tours to guide LK search and perturbation. Our M is a concrete comparison configuration, not an invented bet-and-run framework. Recent candidate-list and partition-crossover studies [9,10] further limit any general novelty claim. McMenemy et al. [11] already compared LKH variants and EAX across a large set of structurally varied instances and investigated instance characteristics; their setting and budgets differ from ours. The present study differs operationally by recording the exact shared parent pool, charging its cost to both arms, and testing the *net* effect of three additional external GPX2 calls on delivered tours. Different implementations, benchmarks and deadlines prevent direct numerical comparisons with the cited studies.
+POPMUSIC has been used to construct LKH candidate edges using tour information [7]. Friedrich et al. [8] and Weise et al. [9] study fixed-budget bet-and-run strategies, including allocation of decision time and prediction; choosing among short initial searches is therefore not a new general strategy. Zhang and Looks [10] use backbone information from tours to guide LK search and perturbation. Our M is a concrete comparison configuration, not an invented bet-and-run framework. Recent candidate-list and partition-crossover studies [11,12] further limit any general novelty claim. McMenemy et al. [13] already compared LKH variants and EAX across a large set of structurally varied instances and investigated instance characteristics; their setting and budgets differ from ours. The present study differs operationally by recording the exact shared parent pool, charging its cost to both arms, and testing the *net* effect of three additional external GPX2 calls on delivered tours. Different implementations, benchmarks and deadlines prevent direct numerical comparisons with the cited studies.
 
 ## 3. Problem and comparison methods
 
@@ -53,7 +53,7 @@ M and K physically reuse the same recorded parent pool, not three separately res
 
 The earlier V22 batch was run on CPU2 using native Windows with an AMD EPYC 7T83 processor. It includes 20 fixed maps, five search seeds per map, and 100 C/M/K groups, for 300 valid method results. Its dataset comprises eight public research instances at 1,000–2,000 cities and twelve generated 10,000-city instances. CPU2 and later local results are not combined in a common test.
 
-R4 used native Windows on a laptop with an Intel Core Ultra 9 275HX and about 47.38 GiB of system-visible memory. Each of 12 preselected instances used seeds 541, 761 and 981. The six generated 10,000-city instances comprise two uniform (U), two clustered (C) and two mixed (R) instances. In instance names, C identifies the clustered family. Supplementary Table S1 describes the generators. The six 1,500–2,000-city RUE, NETGEN and MORPH instances come from the Stirling collection [11]. The inputs use the TSPLIB EUC_2D convention [16]. Two previously exposed map–seed groups remain in the main analysis and are handled separately in the exposure sensitivity.
+R4 used native Windows on a laptop with an Intel Core Ultra 9 275HX and about 47.38 GiB of system-visible memory. Each of 12 preselected instances used seeds 541, 761 and 981. The six generated 10,000-city instances comprise two uniform (U), two clustered (C) and two mixed (R) instances. In instance names, C identifies the clustered family. Supplementary Table S1 describes the generators. The six 1,500–2,000-city RUE, NETGEN and MORPH instances come from the Stirling collection [13]. The inputs use the TSPLIB EUC_2D convention [14]. Two previously exposed map–seed groups remain in the main analysis and are handled separately in the exposure sensitivity.
 
 R4 ran serially with one search task at a time and the registered CPU0 affinity. M preceded K within each shared pool. Affinity specifies placement. Per-arm temperature, effective frequency and trial counts were unavailable for quantifying any order or thermal effect. The project P5, the LKH 3.0.14 Ascent64 builds and the Windows GA-EAX adaptation have separate version records.
 
@@ -65,15 +65,15 @@ For method X against reference Y, a paired percentage reduction is
 \[
 r_{X,Y}=100\frac{L(Y)-L(X)}{L(Y)}.
 \]
-Positive values favor X. Same-map, same-seed pairs are averaged within each map; the available map means are then equally weighted. Seeds are repeated observations within a map, not independent maps. Each map's valid-pair count and failed outcomes are retained. Non-delivery or engineering failure receives neither a zero distance nor an arbitrarily large one, and is not a route-quality win for the other method.
+Positive values favor X. Paired seeds are averaged within maps before giving maps equal weight. Reported effects use parts per million (ppm), with 1% equal to 10,000 ppm. Figure axes retain percent. Counts include non-deliveries and engineering failures, with tour-quality comparisons restricted to valid pairs.
 
-The R4 analysis uses 20,000 map-level bootstrap resamples with the registered random seed and percentile rule, keeping all within-map comparisons together. Intervals are exploratory for this fixed finite map set. Prespecified primary comparisons are K/M, K/C and K against the three registered external configurations. Two-sided exact map-level sign-flip tests and Holm correction are applied to this five-comparison family; the sign-flip inference requires sign symmetry or exchangeability of map-level paired differences under the null, and the non-random fixed maps, fixed M/K order and prior case exposure limit its interpretation; the untested EAX comparison is not treated as significant or silently removed from the family. Other comparisons are descriptive/secondary. Leave-one-map and exposure analyses are sensitivities, not grounds for selecting favorable instances. Failure to reject a difference does not prove equivalence.
+R4 bootstrap intervals use 20,000 map-level resamples with the registered seed and percentile rule. They describe this fixed set of maps. The registered two-sided exact sign-flip tests require symmetry or exchangeability under the null. The five comparisons are K/M, K/C, K/LKH-GPX2, K/LKH-POP and K/EAX. Holm adjustment retains the full family, with the incomplete EAX contrast untested. Other comparisons and the leave-one-map and exposure checks are descriptive.
 
 ## 5. Results
 
 ### 5.1 Earlier CPU2 batch
 
-V22 produced 300 valid C/M/K results with no recorded formal failures or retries. K/C was shorter/tied/longer in 36/38/26 of the 100 seed groups and had a map-equal mean reduction of 0.0034763%; K/M was 44/41/15 with 0.0029300%; M/C was 27/37/36 with 0.0005457%. The earlier V23 audit used 20,000 map-level bootstrap resamples stratified by map family and reported 95% intervals of [0.0012516%, 0.0058313%] and [0.0016491%, 0.0041841%] for K/C and K/M, respectively. In 64 groups K's recombination start was strictly shorter than the best parent; final K/M outcomes in those groups were 44 shorter, five tied and 15 longer. These are CPU2 results under that batch's protocol, not observations that can be paired or pooled with local R4.
+V22 produced 300 valid C/M/K results with no recorded formal failures or retries. K/C was shorter/tied/longer in 36/38/26 of the 100 seed groups and had a map-equal mean reduction of 34.76 ppm; K/M was 44/41/15 with 29.30 ppm; M/C was 27/37/36 with 5.46 ppm. The earlier V23 audit used 20,000 map-level bootstrap resamples stratified by map family and reported 95% intervals of [12.52 ppm, 58.31 ppm] and [16.49 ppm, 41.84 ppm] for K/C and K/M, respectively. In 64 groups K's recombination start was strictly shorter than the best parent; final K/M outcomes in those groups were 44 shorter, five tied and 15 longer. These are CPU2 results under that batch's protocol, not observations that can be paired or pooled with local R4.
 
 ### 5.2 Local R4 C/M/K results
 
@@ -81,36 +81,36 @@ All C, M and K slots yielded valid routes on 12 maps and three seeds. Table 1 re
 
 **Table 1. R4 complete paired route comparisons.**
 
-| Comparison | Valid seed pairs / maps | X shorter / tied / longer | Map-equal mean reduction (%) | Exploratory 95% interval (%) |
-|---|---:|---:|---:|---:|
-| K/M | 36 / 12 | 9 / 21 / 6 | −0.000405 | [−0.002241, 0.001096] |
-| K/C | 36 / 12 | 13 / 16 / 7 | 0.003327 | [0.000745, 0.006461] |
-| M/C | 36 / 12 | 11 / 17 / 8 | 0.003732 | [−0.000018, 0.008460] |
+| Comparison | Valid pairs / maps | Shorter / tied / longer | Map-equal mean (ppm) | Exploratory 95% interval (ppm) |
+| --- | --- | --- | --- | --- |
+| K/M | 36 / 12 | 9 / 21 / 6 | −4.05 | [−22.41, 10.96] |
+| K/C | 36 / 12 | 13 / 16 / 7 | 33.27 | [7.45, 64.61] |
+| M/C | 36 / 12 | 11 / 17 / 8 | 37.32 | [−0.18, 84.60] |
 
-The registered five-comparison Holm family is retained. The four estimable contrasts have six or seven nonzero map effects. Their minimum attainable two-sided sign-flip p-values are 0.03125 and 0.015625, respectively, above the first Holm threshold of 0.01. With this observed tie structure the family could not reject at 0.05. The registered p-values document the analysis. The maps, effect estimates and intervals carry the substantive interpretation. M/C is calculated directly from its own pairs.
+Supplementary Table S5 reports the four estimable registered tests and the incomplete EAX contrast. The estimable comparisons have six or seven nonzero maps, giving minimum two-sided sign-flip p-values of 0.03125 or 0.015625. Both exceed the first Holm cutoff of 0.01. The observed tie structure therefore prevented family-wise rejection at 0.05. M/C is calculated directly from its own pairs.
 
-K/M has two positive, six zero and four negative means under the registered seed-relative metric. Its median map effect is zero. The largest individual improvement was 0.00825% and the largest regression was 0.02858% (139 length units on R10000-01/541). Leaving one map out yields means from −0.000887% to +0.000337%. The registered exposure sensitivity remains slightly negative. Both methods attained the published optimum in all 18 pairs on six 1,500–2,000-city instances [13]. On six 10,000-city maps, K/M was 9 shorter, 3 tied and 6 longer with mean reduction −0.000810%. This exploratory contrast confounds size with origin and structure. On C10000-02 the three absolute K/M differences sum to zero, but seed-specific denominators give the registered map mean a tiny negative sign. The supplementary sensitivity first computes each method’s mean within each map.
+K/M has two positive, six zero and four negative means under the registered seed-relative metric. Its median map effect is zero. The largest individual improvement was 82.50 ppm and the largest regression was 285.80 ppm (139 length units on R10000-01/541). Leaving one map out yields means from −8.87 ppm to 3.37 ppm. The registered exposure sensitivity remains slightly negative. Both methods attained the published optimum in all 18 pairs on six 1,500–2,000-city instances [15]. On six 10,000-city maps, K/M was 9 shorter, 3 tied and 6 longer with mean reduction −8.10 ppm. This exploratory contrast confounds size with origin and structure. On C10000-02 the three absolute K/M differences sum to zero, but seed-specific denominators give the registered map mean a tiny negative sign. The supplementary sensitivity first computes each method’s mean within each map.
 
 ![](Figure_1_R4_K_vs_M.png)
 
 Figure 1. Mean R4 K/M reduction by map. Circles mark exact ties, the triangle a tiny negative effect, and the dashed line the equally weighted mean.
 
-**Table 1a. R4 map-level means of paired seed reductions (%).** Each entry averages the three seeds on that map. The small negative value on C10000-02 is not rounded to a tie for sign counting.
+**Table 1a. R4 map-level means of paired seed reductions (ppm). The V242- prefix is omitted in display labels. Values near zero retain sufficient precision to show their sign.**
 
 | Map | K/M | K/C | M/C |
-|---|---:|---:|---:|
-| V242-C10000-01 | 0.00490172 | −0.00000006 | −0.0049020 |
-| V242-C10000-02 | −0.00000002 | 0.0040537 | 0.0040536 |
-| V242-MORPH-1500 | 0 | 0 | 0 |
-| V242-MORPH-2000 | 0 | 0 | 0 |
-| V242-NETGEN-1500 | 0 | 0 | 0 |
-| V242-NETGEN-2000 | 0 | 0 | 0 |
-| V242-R10000-01 | −0.00856565 | 0.0155472 | 0.0241129 |
-| V242-R10000-02 | −0.00184786 | 0.0058167 | 0.0076644 |
-| V242-RUE-1500 | 0 | 0 | 0 |
-| V242-RUE-2000 | 0 | 0.0014116 | 0.0014116 |
-| V242-U10000-01 | −0.00102209 | 0.0122589 | 0.0132811 |
-| V242-U10000-02 | 0.00167346 | 0.0008368 | −0.0008367 |
+| --- | --- | --- | --- |
+| C10000-01 | 49.02 | −0.00058 | −49.02 |
+| C10000-02 | −0.00018 | 40.54 | 40.54 |
+| MORPH-1500 | 0.00 | 0.00 | 0.00 |
+| MORPH-2000 | 0.00 | 0.00 | 0.00 |
+| NETGEN-1500 | 0.00 | 0.00 | 0.00 |
+| NETGEN-2000 | 0.00 | 0.00 | 0.00 |
+| R10000-01 | −85.66 | 155.47 | 241.13 |
+| R10000-02 | −18.48 | 58.17 | 76.64 |
+| RUE-1500 | 0.00 | 0.00 | 0.00 |
+| RUE-2000 | 0.00 | 14.12 | 14.12 |
+| U10000-01 | −10.22 | 122.59 | 132.81 |
+| U10000-02 | 16.73 | 8.37 | −8.37 |
 
 ### 5.3 Author configurations and delivery
 
@@ -126,18 +126,20 @@ Figure 1. Mean R4 K/M reduction by map. Circles mark exact ties, the triangle a 
 
 All 180 R4 slots for these five methods reached a terminal state, with 164 valid routes. Both author-LKH configurations delivered in zero of six runs on the two 10,000-city clustered maps. The twelve logs report completed ascent and 72.97–74.58 CPU s of preprocessing. These CPU times describe the burden of initial work. They do not locate the wall-clock cutoffs. This comparison uses the registered ALPHA/subgradient configurations and provides no controlled comparison with an author LKH POPMUSIC/no-subgradient configuration.
 
-**Table 2a. Secondary comparisons among pairs with valid deliveries.**
+**Table 2a. Primary and secondary comparisons with valid deliveries in R4.**
 
-| Comparison | Valid pairs / maps | Shorter / tied / longer | Mean reduction (%) |
-| --- | --- | --- | --- |
-| M / LKH-GPX2 | 29 / 10 | 17 / 10 / 2 | 0.024780 |
-| M / LKH-POP | 27 / 10 | 13 / 14 / 0 | 0.031213 |
-| C / LKH-GPX2 | 29 / 10 | 16 / 8 / 5 | 0.020421 |
-| C / LKH-POP | 27 / 10 | 13 / 12 / 2 | 0.025930 |
+| Comparison | Role | Valid pairs / maps | Shorter / tied / longer | Map-equal mean (ppm) | Exploratory 95% interval (ppm) |
+| --- | --- | --- | --- | --- | --- |
+| K/LKH-GPX2 | Primary | 29 / 10 | 17 / 10 / 2 | 242.25 | [65.63, 516.40] |
+| K/LKH-POP | Primary | 27 / 10 | 13 / 14 / 0 | 316.30 | [76.88, 639.88] |
+| M/LKH-GPX2 | Secondary | 29 / 10 | 17 / 10 / 2 | 247.80 | [64.60, 538.95] |
+| M/LKH-POP | Secondary | 27 / 10 | 13 / 14 / 0 | 312.13 | [75.81, 632.85] |
+| C/LKH-GPX2 | Secondary | 29 / 10 | 16 / 8 / 5 | 204.21 | [42.25, 450.16] |
+| C/LKH-POP | Secondary | 27 / 10 | 13 / 12 / 2 | 259.30 | [68.96, 509.60] |
 
-The table reports the four secondary valid-pair comparisons. Map means use participating maps with equal weights.
+The first two rows report registered primary contrasts. The four secondary rows use the same valid-pair rule. Supplementary Table S5 gives the registered p-values.
 
-The original R4 EAX arm, based on the author's edge-assembly crossover approach [12], has 19 attempted slots and 17 deferred slots. Eighteen valid results cover the six 10,000-city U/C/R synthetic maps and all three registered seeds; in these available matched pairs M/EAX is 18/0/0 shorter/tied/longer, C/EAX is 16/0/2, and K/EAX is 17/0/1. This coverage was truncated by the task failure and does not represent a complete or independent 12-map EAX comparison. The adapted EAX program and cold-restart wrapper are not byte-identical to the unmodified author release. A separate EAX supplement also has 18 valid, one failure and 17 unstarted slots; the different execution versions/time blocks cannot be selectively pooled to create a complete uniform baseline. EAX execution failure or deferral is not a route-quality victory. No comprehensive claim against EAX is made.
+The original R4 EAX arm used an adapted implementation of edge-assembly crossover [16]. It delivered 18 of 19 attempts on six large maps, with 17 slots deferred. Among the available pairs, M/EAX, C/EAX and K/EAX were shorter, tied or longer in 18/0/0, 16/0/2 and 17/0/1 cases. The separately versioned EAX supplement delivered 18, failed on one and left 17 unstarted. These partial records describe availability and observed valid pairs.
 
 ### 5.4 Starting tours and continuation
 
@@ -151,7 +153,7 @@ A separate 30-second diagnostic used 12 already-exposed development pools from s
 
 The earlier positive mean in V22 and the slightly negative local R4 K/M mean show that the added recombination benefit is not established as stable across these two nonidentical batches. Neither comparison isolates hardware from dataset, time accounting and other differences, so the reversal of batch means should not be assigned to hardware alone. K/M has more shorter than longer seed pairs in R4 but a negative map-equal mean because the few regressions have larger magnitudes; the leave-one-map range includes both signs. Selecting only favorable maps or reporting seed-level wins as independent map-level evidence would obscure that result.
 
-Distinguishing an intermediate gain from a delivered final gain helps evaluate heuristic pipelines under a complete budget. However, prior bet-and-run and GPX literature has already recognized selection and future trajectory issues [3,6,7]. The present contribution is an explicit, auditable comparison in this setting and a quantified observation of reversals, not a new theory or a general proof of why reversals occur. Different starts can consume pseudorandom numbers differently even with equal seed labels. In particular, best-parent M is a strong control for the incremental effect of K's three external operations.
+A shorter starting tour can still produce a worse final tour. Earlier bet-and-run and GPX studies raise related questions about trajectory and selection [3,8,9]. Our comparison measures the incremental effect of three external recombinations with a shared parent pool. The available records support several explanations, including elapsed preparation, candidate construction and stochastic search state.
 
 The two author-LKH settings illustrate why delivered quality and delivery probability are separate outcomes. A budget failure applies to the tested setup and deadline. A configuration-matched author LKH baseline with POPMUSIC and no subgradient would be needed to isolate this aspect of the external comparison. The EAX records cover separate versions and remain an incomplete external comparison.
 
@@ -159,7 +161,7 @@ The two author-LKH settings illustrate why delivered quality and delivery probab
 
 The selected benchmark has only 12 local maps, some previously exposed cases, three seeds per map and two principal scale ranges; inference to all Euclidean or non-Euclidean TSPs is not justified. The valid-pair external comparisons exclude maps without author-LKH deliveries. CPU affinity does not ensure processor isolation, and unrecorded temperature or exact internal discovery times must not be imputed. R4's two LKH configurations and the incomplete EAX supplement do not cover all strong baselines. Independent route validation verifies feasibility and objective value, not the internal correctness of every search operation or global optimality.
 
-The scope of the performance analysis is the completed batches and the explicitly labeled conditional diagnostic. The supplementary execution record documents the incomplete independent confirmation and other development checks, with their exclusions.
+The supplementary execution record describes the incomplete independent confirmation and development checks.
 
 A follow-up that separates mechanism from end-to-end effect would combine same-total-budget runs with matched continuation windows or trial counts and repeated continuation seeds per shared pool. Randomizing paired execution order and logging search trajectories would help attribute variation. The current comparison estimates the incremental outcome of the combined procedure.
 
@@ -169,7 +171,7 @@ In R4, extra recombination improved the selected starting tour in 20 pairs and p
 
 ## Reproducibility and declarations
 
-Statistical replay uses the saved paired records, map-level aggregation and figure scripts. A separate checker read 464 historical tours against their coordinate files: 300 from V22 and 164 from R4. It verified city coverage, closure and EUC_2D length. In the local review bundle, 18 project-generated maps suffice for 254 tours. Verifying the other 210 requires the exact 14 third-party coordinate files as well as the corresponding saved tours. A separate check extracted those 14 inputs from locally retained copies of the source archives by member and SHA-256. Combined with the locally held tours and project maps, they yielded 464 matching route lengths. The third-party inputs are available from the University of Stirling data record [11], which states CC BY 4.0.
+Statistical replay uses the saved paired records, map-level aggregation and figure scripts. A separate checker read 464 historical tours against their coordinate files: 300 from V22 and 164 from R4. It verified city coverage, closure and EUC_2D length. In the local review bundle, 18 project-generated maps suffice for 254 tours. Verifying the other 210 requires the exact 14 third-party coordinate files as well as the corresponding saved tours. A separate check extracted those 14 inputs from locally retained copies of the source archives by member and SHA-256. Combined with the locally held tours and project maps, they yielded 464 matching route lengths. The third-party inputs are available from the University of Stirling data record [13], which states CC BY 4.0.
 
 The [review repository](https://github.com/wang-d-c/TSP-SCI-Reproducibility-And-Evidence-20261118) provides the 14 attributed public instances and the packaged map-level checking and plotting tools. Full seed-level replay requires the authorized inputs listed in the replay instructions. Access to the saved tour orders, generated coordinates and frozen solver chain is handled separately. Re-running the search also requires the recorded executable versions, Windows environment and budget controls. The supplementary execution record describes the observed limit of local solver replay.
 
@@ -183,15 +185,15 @@ ChatGPT and Codex assisted research design, code development, analysis and manus
 2. Tinós, R., Helsgaun, K., & Whitley, D. (2018). Efficient recombination in the Lin–Kernighan–Helsgaun traveling salesman heuristic. *Parallel Problem Solving from Nature*, LNCS 11101, 95–107. https://doi.org/10.1007/978-3-319-99253-2_8
 3. Tinós, R., Whitley, D., & Ochoa, G. (2020; online 2019). A new generalized partition crossover for the traveling salesman problem: Tunneling between local optima. *Evolutionary Computation*, 28(2), 255–288. https://doi.org/10.1162/evco_a_00254
 4. Hains, D., Whitley, D., & Howe, A. (2012). Improving Lin–Kernighan–Helsgaun with crossover on clustered instances of the TSP. *PPSN XII*, 388–397. https://doi.org/10.1007/978-3-642-32964-7_39
-5. Taillard, É. D., & Helsgaun, K. (2019). POPMUSIC for the travelling salesman problem. *European Journal of Operational Research*, 272(2), 420–429. https://doi.org/10.1016/j.ejor.2018.06.039
-6. Friedrich, T., Kötzing, T., & Wagner, M. (2017). A generic bet-and-run strategy for speeding up stochastic local search. *AAAI Conference on Artificial Intelligence*, 31, 801–807. https://doi.org/10.1609/aaai.v31i1.10645
-7. Weise, T., Wu, Z., & Wagner, M. (2019). An improved generic bet-and-run strategy with performance prediction for stochastic local search. *AAAI Conference on Artificial Intelligence*, 33, 2395–2402. https://doi.org/10.1609/aaai.v33i01.33012395
-8. Zhang, W., & Looks, M. (2005). A novel local search algorithm for the traveling salesman problem that exploits backbones. *IJCAI*, 343–349. https://ijcai.org/proceedings/2005/182
-9. Heins, J., Schäpermeier, L., Kerschke, P., & Whitley, D. (2024). Dancing to the state of the art? How candidate lists influence LKH for solving the traveling salesperson problem. *PPSN XVIII*, LNCS 15148, 100–115. https://doi.org/10.1007/978-3-031-70055-2_7
-10. de Carvalho, O. Q., & Whitley, D. (2025). Dramatically faster partition crossover for the traveling salesman problem. *GECCO ’25*, 818–826. https://doi.org/10.1145/3712256.3726465
-11. McMenemy, P., Veerapen, N., Adair, J., & Ochoa, G. (2019). Rigorous performance analysis of state-of-the-art TSP heuristic solvers. *EvoCOP*, LNCS 11452, 99–114. https://doi.org/10.1007/978-3-030-16711-0_7. Associated dataset record: https://datastorre.stir.ac.uk/handle/11667/127 (CC BY 4.0 for the 14 included instance files).
-12. Nagata, Y., & Kobayashi, S. (2013). A powerful genetic algorithm using edge assembly crossover for the traveling salesman problem. *INFORMS Journal on Computing*, 25(2), 346–363. https://doi.org/10.1287/ijoc.1120.0506
-13. Kerschke, P., Kotthoff, L., Bossek, J., Hoos, H. H., & Trautmann, H. (2018). Leveraging TSP solver complementarity through machine learning. *Evolutionary Computation*, 26(4), 597–620. https://doi.org/10.1162/evco_a_00215
-14. Helsgaun, K. (2009). General k-opt submoves for the Lin–Kernighan TSP heuristic. Mathematical Programming Computation, 1, 119–163. https://doi.org/10.1007/s12532-009-0004-6
-15. Helsgaun, K. (2017). An extension of the Lin–Kernighan–Helsgaun TSP solver for constrained traveling salesman and vehicle routing problems. [Roskilde University technical report](https://forskning.ruc.dk/da/publications/an-extension-of-the-lin-kernighan-helsgaun-tsp-solver-for-constra/).
-16. Reinelt, G. (1991). TSPLIB—A traveling salesman problem library. ORSA Journal on Computing, 3(4), 376–384. https://doi.org/10.1287/ijoc.3.4.376
+5. Helsgaun, K. (2009). General k-opt submoves for the Lin–Kernighan TSP heuristic. *Mathematical Programming Computation*, 1, 119–163. https://doi.org/10.1007/s12532-009-0004-6
+6. Helsgaun, K. (2017). An extension of the Lin–Kernighan–Helsgaun TSP solver for constrained traveling salesman and vehicle routing problems. Technical report, Roskilde University. https://forskning.ruc.dk/da/publications/an-extension-of-the-lin-kernighan-helsgaun-tsp-solver-for-constra/
+7. Taillard, É. D., & Helsgaun, K. (2019). POPMUSIC for the travelling salesman problem. *European Journal of Operational Research*, 272(2), 420–429. https://doi.org/10.1016/j.ejor.2018.06.039
+8. Friedrich, T., Kötzing, T., & Wagner, M. (2017). A generic bet-and-run strategy for speeding up stochastic local search. *AAAI Conference on Artificial Intelligence*, 31, 801–807. https://doi.org/10.1609/aaai.v31i1.10645
+9. Weise, T., Wu, Z., & Wagner, M. (2019). An improved generic bet-and-run strategy with performance prediction for stochastic local search. *AAAI Conference on Artificial Intelligence*, 33, 2395–2402. https://doi.org/10.1609/aaai.v33i01.33012395
+10. Zhang, W., & Looks, M. (2005). A novel local search algorithm for the traveling salesman problem that exploits backbones. *IJCAI*, 343–349. https://ijcai.org/proceedings/2005/182
+11. Heins, J., Schäpermeier, L., Kerschke, P., & Whitley, D. (2024). Dancing to the state of the art? How candidate lists influence LKH for solving the traveling salesperson problem. *PPSN XVIII*, LNCS 15148, 100–115. https://doi.org/10.1007/978-3-031-70055-2_7
+12. de Carvalho, O. Q., & Whitley, D. (2025). Dramatically faster partition crossover for the traveling salesman problem. *GECCO ’25*, 818–826. https://doi.org/10.1145/3712256.3726465
+13. McMenemy, P., Veerapen, N., Adair, J., & Ochoa, G. (2019). Rigorous performance analysis of state-of-the-art TSP heuristic solvers. *EvoCOP*, LNCS 11452, 99–114. https://doi.org/10.1007/978-3-030-16711-0_7. Associated dataset record: https://datastorre.stir.ac.uk/handle/11667/127 (CC BY 4.0 for the 14 included instance files).
+14. Reinelt, G. (1991). TSPLIB—A traveling salesman problem library. *ORSA Journal on Computing*, 3(4), 376–384. https://doi.org/10.1287/ijoc.3.4.376
+15. Kerschke, P., Kotthoff, L., Bossek, J., Hoos, H. H., & Trautmann, H. (2018). Leveraging TSP solver complementarity through machine learning. *Evolutionary Computation*, 26(4), 597–620. https://doi.org/10.1162/evco_a_00215
+16. Nagata, Y., & Kobayashi, S. (2013). A powerful genetic algorithm using edge assembly crossover for the traveling salesman problem. *INFORMS Journal on Computing*, 25(2), 346–363. https://doi.org/10.1287/ijoc.1120.0506

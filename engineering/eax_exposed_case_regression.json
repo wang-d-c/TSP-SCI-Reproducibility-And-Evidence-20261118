@@ -1,0 +1,54 @@
+{
+  "purpose": "test of an exposed failure case",
+  "formal_ranking_eligible": false,
+  "baseline_batch_completed": false,
+  "map": "V242-RUE-1500",
+  "map_sha256": "5e32c48d9b89f5905a2c84e9ff29282a372c65110bc393f044a15768ca036e91",
+  "seed": 541,
+  "software_variant": "Frozen R4 GA-EAX Normal Windows compatibility build with isolated v2 observer-wrapper correction",
+  "native_sha256": "db5e3f8d938aeb22d2d7d09a9218256b6e061b2c0149cf94e950bb407cff65a9",
+  "no_solver_tests_passed": 15,
+  "isolated_attempts": [
+    {
+      "id": "E_01",
+      "status": "monitor_invalid",
+      "native_started": false,
+      "actual_error_codes": [
+        "0xC0000BC8"
+      ]
+    },
+    {
+      "id": "E_02",
+      "status": "valid",
+      "native_started": true,
+      "route_length_two_independent_recounts": 28369732,
+      "route_sha256": "4c98d7014b3cc99ef3b2f49c1a590bc2cab25057471628667f9ecb33d6c3a4b6",
+      "candidate_count_published_and_consumed": 2525,
+      "candidate_count_last_restart": 69,
+      "restarts_including_initial": 13,
+      "seconds_from_charged_origin": {
+        "stop_request": 85.80969500100036,
+        "owned_job_zero_observed": 85.82996520099914,
+        "route_delivered": 6.3040875009992305,
+        "actual_method_exit": 85.87438340100016,
+        "all_processes_clean": 85.93999240099947
+      },
+      "monitoring": {
+        "cpu_affinity_mask": 1,
+        "per_process_commit_cap_bytes": 4294967296,
+        "job_peak_commit_bytes": 95645696,
+        "system_samples": 391,
+        "paging_samples": 97,
+        "paging_guard_status": "monitored_no_trip"
+      }
+    }
+  ],
+  "source_record_hashes": {
+    "attempt01_outer_result": "8dce47f99ec2042a0d4ec8538f1c4ba7ade102a426cc1d4ec161a32b0240c8f6",
+    "attempt01_raw_monitor_summary": "32f4f1dc4406dd4792ba5980de2c29fc869ad92e91f354192552143825ad66d4",
+    "attempt02_outer_result": "7d45a9ae51ee5fee7d6eacd9a3ae1e4250e8801d429f3eae7e4e332b4c9cd19d",
+    "attempt02_inner_result": "28d7a08cf4a5b4ec66851a299861471b1767c237cf6f7dfa607c601e9faa7191",
+    "attempt02_independent_validation": "f31dfa873184ef3ddc6270706691bc0eb379cc113fb883eb0374ae25bdfe386b",
+    "attempt02_runtime_binding": "233916ff9bd53c94a72b4ee87e0fdcae919f0f53fd6cad19eefe81cbe2b5f3a3"
+  }
+}
