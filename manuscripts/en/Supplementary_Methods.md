@@ -92,7 +92,7 @@ The coordinates, city IDs, dimension, distance type and input-file SHA-256 match
 
 In V22, eight different public maps supplied 40 valid routes per arm. C attained the corresponding optimum in 37 runs, M in 36 and K in 39. These results are reported separately from R4. The 18 project-generated maps across the two batches have no matched external reference in this analysis.
 
-Companion data record all 14 reference values and 210 valid historical route comparisons. For a valid tour of length L and published optimum O, the percentage gap is 100 × (L − O) / O. A zero gap says nothing about when the optimum was first found.
+The public companion tables list all 14 reference lengths and summarize 210 valid historical route comparisons by instance and method. The individual comparison records require authorized source data. For a valid tour of length L and published optimum O, the percentage gap is 100 × (L − O) / O. A zero gap says nothing about when the optimum was first found.
 
 ## Supplementary execution record
 
