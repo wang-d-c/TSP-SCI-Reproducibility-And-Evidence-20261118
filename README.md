@@ -1,6 +1,6 @@
 # Fixed-budget TSP recombination and continuation
 
-**Corresponding-author review materials · 2026-11-19 · Not submitted.** Authorship and approval remain pending. [English paper](manuscripts/en/Manuscript_scientific_review.pdf) · [Supplementary methods](manuscripts/en/Supplementary_Methods.pdf) · [中文审阅稿](manuscripts/zh/中文科学修订_作者审阅.pdf).
+**Corresponding-author review · v1.6 minor scientific revision · 2026-11-19 · Not submitted.** Authorship and approval remain pending. [English paper](manuscripts/en/Manuscript_scientific_review.pdf) · [Supplementary methods](manuscripts/en/Supplementary_Methods.pdf) · [中文审阅稿](manuscripts/zh/中文科学修订_作者审阅.pdf).
 
 This empirical study asks whether three GPX2 recombinations improve the final delivered tour when M and K start with the same three parents, each pays the full shared parent-pool cost, and both have the same total time budget. In R4, K was shorter, tied or longer than M in 9, 21 and 6 pairs. Its equally map-weighted mean reduction was −0.000405%, with a map-level 95% interval of [−0.002241%, +0.001096%]. In the 20 pairs with a shorter K start, the endpoint was shorter in nine, tied in five and longer in six. V22 and R4 differ in platform and protocol and are analyzed separately.
 
@@ -25,6 +25,10 @@ python -B -X utf8 rebuild_generated_maps.py generated-local
 ```
 
 The [replay guide](replay/README_EN.md) also gives the original V22 inference convention and the tour-verification commands. The two principal figures use frozen historical CSVs. All 464 saved valid historical tours were independently verified on the project machine. The results, checksums and coordinates here do not include the city orders. New timed searches require the registered solver versions and Windows environment and the applicable rights.
+
+## Minor scientific revision
+
+The current English abstract has 233 whitespace-delimited words. The English and Chinese Markdown, Word and PDF files include the related-work clarification, R4 Holm-adjusted interpretation and EAX stop-evidence wording. [Revision record](manuscripts/修订对照.md).
 
 ## New engineering evidence
 

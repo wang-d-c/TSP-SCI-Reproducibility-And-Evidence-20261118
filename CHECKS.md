@@ -16,3 +16,5 @@ This revision checks the 480 public historical run rows against map-level and su
 Using authorized local city orders and the 32 exact inputs, the release work independently checked all 300 V22 and 164 valid R4 saved tours. Their hash, city coverage and recomputed EUC_2D length checks passed. These city-order files stay outside the public package. Checking saved routes establishes their length and coverage. Timed algorithm reruns have additional requirements.
 
 The [engineering summary](实验与稿件交付状态.md) and [sanitized receipt](engineering/engineering_qualification_status.json) describe the new completion and stopping evidence. No solver was run for this release, and the proposed 1,600 formal slots remain unstarted.
+
+本次公开 v1.6 同步终审科学小修稿，既有历史数字、图件、补充方法和复现脚本原样继承。英文摘要按空白分词为 233 词。正式计划仍为 0/1600。
